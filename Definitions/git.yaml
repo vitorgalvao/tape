@@ -1,0 +1,9 @@
+---
+name: Git
+id: ~
+
+paths:
+  - ~/.gitconfig
+  - ~/.gitignore
+  - ~/.config/git
+...

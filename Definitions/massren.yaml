@@ -1,0 +1,7 @@
+---
+name: Massren
+id: ~
+
+paths:
+  - ~/.config/massren/profile.sqlite
+...

@@ -1,0 +1,8 @@
+---
+name: Rubocop
+id: ~
+
+paths:
+  - ~/.rubocop.yml
+  - ~/.config/rubocop/config.yml
+...

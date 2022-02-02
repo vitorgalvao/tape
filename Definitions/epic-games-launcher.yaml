@@ -1,0 +1,7 @@
+---
+name: Epic Games Launcher
+id: com.epicgames.EpicGamesLauncher
+
+paths:
+  - ~/Library/Preferences/Unreal Engine/EpicGamesLauncher/Mac/GameUserSettings.ini
+...

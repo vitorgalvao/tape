@@ -1,0 +1,7 @@
+---
+name: Processing
+id: org.processing.app
+
+paths:
+  - ~/Library/Processing/preferences.txt
+...

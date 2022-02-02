@@ -1,0 +1,14 @@
+---
+name: Cockatrice
+id: com.cockatrice.cockatrice
+
+paths:
+  - ~/Library/Application Support/Cockatrice/Cockatrice/cards.xml
+  - ~/Library/Application Support/Cockatrice/Cockatrice/customsets
+  - ~/Library/Application Support/Cockatrice/Cockatrice/decks
+  - ~/Library/Application Support/Cockatrice/Cockatrice/pics/CUSTOM
+  - ~/Library/Application Support/Cockatrice/Cockatrice/replays
+  - ~/Library/Application Support/Cockatrice/Cockatrice/settings
+  - ~/Library/Application Support/Cockatrice/Cockatrice/themes
+  - ~/Library/Application Support/Cockatrice/Cockatrice/tokens.xml
+...

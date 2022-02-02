@@ -1,0 +1,7 @@
+---
+name: mpv
+id: ~
+
+paths:
+  - ~/.config/mpv
+...

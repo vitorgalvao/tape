@@ -1,0 +1,7 @@
+---
+name: VMWare Fusion
+id: com.vmware.fusion
+
+paths:
+  - ~/Library/Application Support/VMware Fusion
+...

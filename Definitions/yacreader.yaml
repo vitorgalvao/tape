@@ -1,0 +1,7 @@
+---
+name: YACReader
+id: com.yourcompany.YACReader
+
+paths:
+  - ~/Library/Application Support/YACReader
+...

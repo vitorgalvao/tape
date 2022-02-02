@@ -1,0 +1,7 @@
+---
+name: Transmission
+id: org.m0k.transmission
+
+paths:
+  - ~/Library/Application Support/Transmission/blocklists
+...

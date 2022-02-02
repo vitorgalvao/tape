@@ -1,0 +1,7 @@
+---
+name: GeoToad
+id: ~
+
+paths:
+  - ~/.config/GeoToad
+...

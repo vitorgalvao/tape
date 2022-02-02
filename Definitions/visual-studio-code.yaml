@@ -1,0 +1,7 @@
+---
+name: Visual Studio Code
+id: com.microsoft.VSCode
+
+paths:
+  - ~/Library/Application Support/Code/User
+...

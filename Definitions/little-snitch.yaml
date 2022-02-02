@@ -1,0 +1,11 @@
+---
+name: Little Snitch
+id:
+  - at.obdev.LittleSnitchAgent
+  - at.obdev.LittleSnitchConfiguration
+  - at.obdev.LittleSnitchNetworkMonitor
+  - at.obdev.LittleSnitchSoftwareUpdate
+
+paths:
+  - ~/Library/Application Support/Little Snitch
+...

@@ -1,0 +1,7 @@
+---
+name: asciinema
+id: ~
+
+paths:
+  - ~/.asciinema
+...

@@ -1,0 +1,7 @@
+---
+name: Textual
+id: com.codeux.irc.textual5
+
+paths:
+  - ~/Library/Application Support/Textual IRC
+...

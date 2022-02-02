@@ -1,0 +1,7 @@
+---
+name: macOS Spelling
+id: ~
+
+paths:
+  - ~/Library/Spelling/LocalDictionary
+...

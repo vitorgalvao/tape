@@ -1,0 +1,7 @@
+---
+name: Klokki Slim
+id: com.klokki-slim.macos
+
+paths:
+  - ~/Library/Containers/com.klokki-slim.macos/Data/Library/Application Support/com.klokki-slim.macos
+...

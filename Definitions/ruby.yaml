@@ -1,0 +1,10 @@
+---
+name: Ruby
+id: ~
+
+paths:
+  - .gem/credentials
+  - .gemrc
+  - .irbrc
+  - .pryrc
+...

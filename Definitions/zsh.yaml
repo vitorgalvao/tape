@@ -1,0 +1,12 @@
+---
+name: Zsh
+id: ~
+
+paths:
+  - ~/.zlogin
+  - ~/.zlogout
+  - ~/.zprofile
+  - ~/.zsh_history
+  - ~/.zshenv
+  - ~/.zshrc
+...

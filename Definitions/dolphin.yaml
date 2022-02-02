@@ -1,0 +1,11 @@
+---
+name: Dolphin
+id: org.dolphin-emu.dolphin
+
+paths:
+  - ~/Library/Application Support/Dolphin/Config
+  - ~/Library/Application Support/Dolphin/GC/EUR
+  - ~/Library/Application Support/Dolphin/GC/JAP
+  - ~/Library/Application Support/Dolphin/GC/USA
+  - ~/Library/Application Support/Dolphin/Wii/title
+...

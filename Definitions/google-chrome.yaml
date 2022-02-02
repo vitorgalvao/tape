@@ -1,0 +1,10 @@
+---
+name: Google Chrome
+id: com.google.Chrome
+
+paths:
+  - ~/Library/Application Support/Google/Chrome/Default/Extensions
+  - ~/Library/Application Support/Google/Chrome/Default/Local Extension Settings
+  - ~/Library/Application Support/Google/Chrome/Default/Preferences
+  - ~/Library/Application Support/Google/Chrome/Default/Secure Preferences
+...

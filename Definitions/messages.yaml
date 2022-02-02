@@ -1,0 +1,7 @@
+---
+name: Messages
+id: com.apple.iChat
+
+paths:
+  - ~/Library/Application Scripts/com.apple.iChat
+...

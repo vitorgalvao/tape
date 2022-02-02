@@ -1,0 +1,7 @@
+---
+name: fish
+id: ~
+
+paths:
+  - ~/.config/fish
+...

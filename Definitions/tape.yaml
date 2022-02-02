@@ -1,0 +1,7 @@
+---
+name: Tape
+id: ~
+
+paths:
+  - ~/.config/tape/config.yaml
+...

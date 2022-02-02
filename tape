@@ -1,0 +1,289 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'fileutils'
+require 'json'
+require 'open3'
+require 'pathname'
+require 'tmpdir'
+require 'yaml'
+
+# Exit cleanup
+Tmp_dir = Pathname.new(Dir.mktmpdir)
+at_exit do Tmp_dir.rmtree end
+
+# Helpers
+def app_running?(bundle_id)
+  Open3.capture3(
+    '/usr/bin/osascript', '-l', 'JavaScript', '-e',
+    "Application('#{bundle_id}').running()"
+  ).first.strip == 'true'
+end
+
+def app_installed?(app_token)
+  definition = YAML.load_file(Definitions_dir.join("#{app_token}.yaml"))
+  bundle_ids = definition['id'].instance_of?(String) ? [definition['id']] : definition['id']
+
+  return true if bundle_ids&.any? { Open3.capture3('/usr/bin/defaults', 'read', _1).last.success? }
+  return true if definition['paths']&.any? { Pathname.new(_1).expand_path.exist? }
+
+  false
+end
+
+def copy_path(source, target)
+  return unless Pathname.new(source).exist? # If path does not exist, do not try to copy it
+
+  target.dirname.mkpath # Repeat directory structure of copied path
+  FileUtils.rm_rf(target) # Delete target path before trying to copy
+  FileUtils.cp_r(source, target)
+end
+
+def backup_app(app_token)
+  definition = YAML.load_file(Definitions_dir.join("#{app_token}.yaml"))
+  backup_dir = Tmp_dir.join(definition['name'])
+  bundle_ids = definition['id'].instance_of?(String) ? [definition['id']] : definition['id']
+
+  puts "Backing up #{definition['name']}…"
+
+  # Backup preferences
+  backup_dir.mkpath
+
+  bundle_ids&.each do
+    system('/usr/bin/defaults', 'export', _1, backup_dir.join("#{_1}.plist").to_path)
+  end
+
+  # Backup paths
+  definition['paths']&.each do
+    copy_path(Pathname.new(_1).expand_path, backup_dir.join(_1))
+  end
+end
+
+def restore_app(app_token)
+  definition = YAML.load_file(Definitions_dir.join("#{app_token}.yaml"))
+  backup_dir = Tmp_dir.join(definition['name'])
+  bundle_ids = definition['id'].instance_of?(String) ? [definition['id']] : definition['id']
+
+  puts "Restoring backup for #{definition['name']}…"
+
+  # Restore preferences
+  bundle_ids&.each do
+    system('/usr/bin/defaults', 'import', _1, backup_dir.join("#{_1}.plist").to_path)
+  end
+
+  # Restore paths
+  definition['paths']&.each do
+    copy_path(backup_dir.join(_1), Pathname.new(_1).expand_path)
+  end
+
+  # Warn if app is running
+  return unless bundle_ids&.any? { app_running?(_1) }
+
+  puts "#{definition['name']} is running. You may need to restart it for settings to take effect."
+end
+
+def update_definitions
+  local_hash_file = Config_dir.join('latest_hash.txt')
+
+  # Skip if updated in the last minute
+  return if local_hash_file.exist? && (Time.now - local_hash_file.mtime) < 60
+
+  puts 'Updating definitions…'
+
+  # Check if there have been any updates
+  local_hash = local_hash_file.exist? ? local_hash_file.read.chomp : nil
+
+  remote_hash = JSON.parse(Open3.capture2(
+    '/usr/bin/curl', '--silent', 'https://api.github.com/repos/vitorgalvao/tape/commits/main'
+  ).first)['sha']
+
+  return if remote_hash == local_hash
+
+  # Update
+  local_hash_file.write(remote_hash)
+  Definitions_dir.rmtree if Definitions_dir.exist?
+  tmp_repo = Pathname.new(Dir.mktmpdir)
+
+  system('git', 'clone', '--quiet', 'https://github.com/vitorgalvao/tape.git', tmp_repo.to_path)
+  tmp_repo.join('Definitions').rename(Definitions_dir)
+end
+
+# Usage
+def usage
+  prog = Pathname.new($PROGRAM_NAME).basename.to_path
+
+  puts <<~USAGE
+    Backup and restore software settings on macOS
+
+    Usage:
+      #{prog} backup             Update definitions and backup settings
+      #{prog} restore <tgz>      Restore settings from previous backup
+      #{prog} update             Force update of backup definitions
+      #{prog} list               Show all supported software and which you are backing up
+      #{prog} launchd <on|off>   Load or unload an agent to perform daily backups
+      #{prog} version            Show #{prog} version
+      #{prog} help               Show this help
+  USAGE
+
+  exit
+end
+
+usage if ARGV.empty? || ARGV.include?('help') || ARGV.include?('--help') || ARGV.include?('-h')
+
+# Load config
+Config_dir = Pathname.new(ENV['HOME']).join('.config', 'tape')
+Config_file = Config_dir.join('config.yaml')
+
+Default_config = {
+  'backup_to' => Config_dir.join('Backups').to_path, # Directory to save backups (leading "~" is expanded)
+  'keep' => 5, # Number of backups to keep
+  'exclude' => ['ssh'], # By default, backup everything except what is on this list
+  'include' => nil # If set, *only* these will be backed up and the "exclude" list will be ignored
+}.freeze
+
+unless Config_file.exist?
+  warn "No config file found. One with default settings was saved to #{Config_file}:\n#{Default_config.to_yaml}\n"
+
+  Config_dir.mkpath
+  Config_file.write(Default_config.to_yaml)
+end
+
+Config = YAML.load_file(Config_file)
+
+abort '"keep" value in configuration needs to be a whole number bigger than 0' unless Config['keep'].positive?
+
+# Collect software to backup or restore
+Backups_dir = Pathname.new(Config['backup_to']).expand_path
+
+Definitions_dir = Config_dir.join('Definitions')
+update_definitions unless Definitions_dir.exist?
+
+All_apps = Definitions_dir
+  .children
+  .select { _1.extname == '.yaml' }
+  .sort
+  .map { _1.basename(_1.extname).to_path }
+
+# Launchd for automatic backups
+Launchd_file = Pathname.new(ENV['HOME']).join('Library', 'LaunchAgents', 'com.vitorgalvao.launchd.tape.plist')
+
+Launchd_contents = <<~LAUNCHD_PLIST
+  <?xml version="1.0" encoding="UTF-8"?>
+  <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+  <plist version="1.0">
+  <dict>
+          <key>Label</key>
+          <string>com.vitorgalvao.launchd.tape</string>
+          <key>ProgramArguments</key>
+          <array>
+                  <string>#{Pathname.new($PROGRAM_NAME).expand_path}</string>
+                  <string>backup</string>
+          </array>
+          <key>StandardOutPath</key>
+          <string>/tmp/tape_backup.log</string>
+          <key>StandardErrorPath</key>
+          <string>/tmp/tape_backup.log</string>
+          <key>StartCalendarInterval</key>
+          <dict>
+                  <key>Hour</key>
+                  <integer>20</integer>
+                  <key>Minute</key>
+                  <integer>0</integer>
+          </dict>
+  </dict>
+  </plist>
+LAUNCHD_PLIST
+
+# Main
+case ARGV[0]
+when 'backup'
+  update_definitions
+
+  # Backup selected and valid apps
+  (Config['include'].nil? ? All_apps - Config['exclude'].to_a : Config['include'])
+    .select { app_installed?(_1) }
+    .each do backup_app(_1) end
+
+  # Archive
+  Backups_dir.mkpath
+
+  system(
+    '/usr/bin/tar', '--gzip', '--create',
+    '--file', Backups_dir.join("#{Time.now.strftime('%Y-%m-%d')}.tgz").to_path,
+    '--directory', Tmp_dir.to_path, '.'
+  )
+
+  # Remove older backups
+  Backups_dir
+    .children
+    .select { _1.extname == '.tgz' }
+    .sort
+    .reverse
+    .drop(Config['keep'])
+    .each do _1.delete end
+when 'restore'
+  abort 'Restore needs a path to a valid .tgz' if ARGV[1].nil? || Pathname.new(ARGV[1]).extname != '.tgz'
+
+  # Unarchive
+  system(
+    '/usr/bin/tar', '--extract',
+    '--file', ARGV[1],
+    '--directory', Tmp_dir.to_path
+  )
+
+  # Restore apps available in backup
+  All_apps.each do |app_token|
+    name = YAML.load_file(Definitions_dir.join("#{app_token}.yaml"))['name']
+    next unless Tmp_dir.join(name).exist? # Skip if app directory does not exist in backup
+
+    restore_app(app_token)
+  end
+when 'update'
+  update_definitions
+when 'list'
+  update_definitions
+
+  included = (Config['include'].nil? ? All_apps - Config['exclude'].to_a : Config['include']).select { app_installed?(_1) }
+  excluded = All_apps - included
+
+  puts '--- Included ---'
+  puts included.map { YAML.load_file(Definitions_dir.join("#{_1}.yaml"))['name'] }.join("\n")
+  puts
+  puts '--- Excluded ---'
+  puts excluded.map { YAML.load_file(Definitions_dir.join("#{_1}.yaml"))['name'] }.join("\n")
+when 'launchd'
+  if ARGV[1] == 'on'
+    Launchd_file.dirname.mkpath
+    Launchd_file.write(Launchd_contents)
+
+    system(
+      'launchctl', 'bootstrap',
+      "gui/#{Open3.capture2('/usr/bin/id', '-u', ENV['USER']).first}",
+      Launchd_file.to_path
+    )
+
+    exit
+  end
+
+  if ARGV[1] == 'off'
+    system(
+      'launchctl', 'bootout',
+      "gui/#{Open3.capture2('/usr/bin/id', '-u', ENV['USER']).first}",
+      Launchd_file.to_path
+    )
+
+    Launchd_file.delete
+
+    exit
+  end
+
+  # If we reach this point, wrong argument was given
+  abort 'Launchd needs an argument of "on" or "off"'
+when 'version'
+  puts '2022.1'
+else
+  abort <<~INVALID
+    Invalid argument. Try:
+
+      #{Pathname.new($PROGRAM_NAME)} help
+  INVALID
+end

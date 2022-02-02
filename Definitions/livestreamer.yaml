@@ -1,0 +1,8 @@
+---
+name: Livestreamer
+id: ~
+
+paths:
+  - ~/.livestreamerrc
+  - ~/.config/livestreamer
+...
