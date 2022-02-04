@@ -121,7 +121,7 @@ def usage
     Usage:
       #{Script_name} backup             Update definitions and backup settings
       #{Script_name} restore <tgz>      Restore settings from previous backup
-      #{Script_name} list               Show all supported software and which you are backing up
+      #{Script_name} list               Show all supported software, separated by backup status
       #{Script_name} launchd <on|off>   Load or unload an agent to perform daily backups
       #{Script_name} update             Force update of backup definitions
       #{Script_name} version            Show #{Script_name} version
@@ -249,11 +249,8 @@ when 'list'
   included = (Config['include'].nil? ? All_apps - Config['exclude'].to_a : Config['include']).select { app_installed?(_1) }
   excluded = All_apps - included
 
-  puts '--- Included ---'
-  puts included.map { YAML.load_file(Definitions_dir.join("#{_1}.yaml"))['name'] }.join("\n")
-  puts
-  puts '--- Excluded ---'
-  puts excluded.map { YAML.load_file(Definitions_dir.join("#{_1}.yaml"))['name'] }.join("\n")
+  puts excluded.map { YAML.load_file(Definitions_dir.join("#{_1}.yaml"))['name'] }.map { "\e[31m✗\e[0m #{_1}" }.join("\n")
+  puts included.map { YAML.load_file(Definitions_dir.join("#{_1}.yaml"))['name'] }.map { "\e[32m✓\e[0m #{_1}" }.join("\n")
 when 'launchd'
   if ARGV[1] == 'on'
     Launchd_file.dirname.mkpath
