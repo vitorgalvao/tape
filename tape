@@ -102,10 +102,10 @@ def update_definitions(force: false)
     '/usr/bin/curl', '--silent', 'https://api.github.com/repos/vitorgalvao/tape/commits/main'
   ).first)['sha']
 
+  local_hash_file.write(remote_hash)
   return if remote_hash == local_hash
 
   # Update
-  local_hash_file.write(remote_hash)
   Definitions_dir.rmtree if Definitions_dir.exist?
   tmp_repo = Pathname.new(Dir.mktmpdir)
 
