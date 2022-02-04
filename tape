@@ -121,7 +121,7 @@ def usage
     Usage:
       #{Script_name} backup             Update definitions and backup settings
       #{Script_name} restore <tgz>      Restore settings from previous backup
-      #{Script_name} list               Show all supported software, separated by backup status
+      #{Script_name} list               Show supported software separated by what will be backed up
       #{Script_name} launchd <on|off>   Load or unload an agent to perform daily backups
       #{Script_name} update             Force update of backup definitions
       #{Script_name} version            Show #{Script_name} version

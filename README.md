@@ -43,7 +43,7 @@ Backup and restore software settings on macOS
 Usage:
   tape backup             Update definitions and backup settings
   tape restore <tgz>      Restore settings from previous backup
-  tape list               Show all supported software and which you are backing up
+  tape list               Show supported software separated by what will be backed up
   tape launchd <on|off>   Load or unload an agent to perform daily backups
   tape update             Force update of backup definitions
   tape version            Show tape version
