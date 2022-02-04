@@ -169,6 +169,11 @@ Launchd_contents = <<~LAUNCHD_PLIST
   <dict>
           <key>Label</key>
           <string>com.vitorgalvao.launchd.tape</string>
+          <key>EnvironmentVariables</key>
+          <dict>
+                  <key>PATH</key>
+                  <string>/opt/homebrew/opt/ruby/bin:/usr/local/opt/ruby/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+              </dict>
           <key>ProgramArguments</key>
           <array>
                   <string>#{Script_path}</string>
