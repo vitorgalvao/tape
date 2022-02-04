@@ -8,6 +8,9 @@ require 'pathname'
 require 'tmpdir'
 require 'yaml'
 
+Script_path = Pathname.new($PROGRAM_NAME).expand_path
+Script_name = Script_path.basename
+
 # Exit cleanup
 Tmp_dir = Pathname.new(Dir.mktmpdir)
 at_exit do Tmp_dir.rmtree end
@@ -109,19 +112,17 @@ end
 
 # Usage
 def usage
-  prog = Pathname.new($PROGRAM_NAME).basename.to_path
-
   puts <<~USAGE
     Backup and restore software settings on macOS
 
     Usage:
-      #{prog} backup             Update definitions and backup settings
-      #{prog} restore <tgz>      Restore settings from previous backup
-      #{prog} list               Show all supported software and which you are backing up
-      #{prog} launchd <on|off>   Load or unload an agent to perform daily backups
-      #{prog} update             Force update of backup definitions
-      #{prog} version            Show #{prog} version
-      #{prog} help               Show this help
+      #{Script_name} backup             Update definitions and backup settings
+      #{Script_name} restore <tgz>      Restore settings from previous backup
+      #{Script_name} list               Show all supported software and which you are backing up
+      #{Script_name} launchd <on|off>   Load or unload an agent to perform daily backups
+      #{Script_name} update             Force update of backup definitions
+      #{Script_name} version            Show #{Script_name} version
+      #{Script_name} help               Show this help
   USAGE
 
   exit
@@ -167,7 +168,7 @@ Launchd_contents = <<~LAUNCHD_PLIST
           <string>com.vitorgalvao.launchd.tape</string>
           <key>ProgramArguments</key>
           <array>
-                  <string>#{Pathname.new($PROGRAM_NAME).expand_path}</string>
+                  <string>#{Script_path}</string>
                   <string>backup</string>
           </array>
           <key>StandardOutPath</key>
@@ -281,6 +282,6 @@ else
   abort <<~INVALID
     Invalid argument. Try:
 
-      #{Pathname.new($PROGRAM_NAME)} help
+      #{Script_path} help
   INVALID
 end
