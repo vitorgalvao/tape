@@ -81,11 +81,11 @@ def restore_app(app_token)
   puts "#{definition['name']} is running. You may need to restart it for settings to take effect."
 end
 
-def update_definitions
+def update_definitions(force: false)
   local_hash_file = Config_dir.join('latest_hash.txt')
 
-  # Skip if updated in the last minute
-  return if local_hash_file.exist? && (Time.now - local_hash_file.mtime) < 60
+  # Skip if updated in the last hour, unless forced
+  return if !force && local_hash_file.exist? && (Time.now - local_hash_file.mtime) < 3600
 
   puts 'Updating definitions…'
 
@@ -117,9 +117,9 @@ def usage
     Usage:
       #{prog} backup             Update definitions and backup settings
       #{prog} restore <tgz>      Restore settings from previous backup
-      #{prog} update             Force update of backup definitions
       #{prog} list               Show all supported software and which you are backing up
       #{prog} launchd <on|off>   Load or unload an agent to perform daily backups
+      #{prog} update             Force update of backup definitions
       #{prog} version            Show #{prog} version
       #{prog} help               Show this help
   USAGE
@@ -153,15 +153,7 @@ abort '"keep" value in configuration needs to be a whole number bigger than 0' u
 
 # Collect software to backup or restore
 Backups_dir = Pathname.new(Config['backup_to']).expand_path
-
 Definitions_dir = Config_dir.join('Definitions')
-update_definitions unless Definitions_dir.exist?
-
-All_apps = Definitions_dir
-  .children
-  .select { _1.extname == '.yaml' }
-  .sort
-  .map { _1.basename(_1.extname).to_path }
 
 # Launchd for automatic backups
 Launchd_file = Pathname.new(ENV['HOME']).join('Library', 'LaunchAgents', 'com.vitorgalvao.launchd.tape.plist')
@@ -194,10 +186,17 @@ Launchd_contents = <<~LAUNCHD_PLIST
 LAUNCHD_PLIST
 
 # Main
+# Update definitions
+update_definitions
+
+All_apps = Definitions_dir
+  .children
+  .select { _1.extname == '.yaml' }
+  .sort
+  .map { _1.basename(_1.extname).to_path }
+
 case ARGV[0]
 when 'backup'
-  update_definitions
-
   # Backup selected and valid apps
   (Config['include'].nil? ? All_apps - Config['exclude'].to_a : Config['include'])
     .select { app_installed?(_1) }
@@ -237,11 +236,7 @@ when 'restore'
 
     restore_app(app_token)
   end
-when 'update'
-  update_definitions
 when 'list'
-  update_definitions
-
   included = (Config['include'].nil? ? All_apps - Config['exclude'].to_a : Config['include']).select { app_installed?(_1) }
   excluded = All_apps - included
 
@@ -278,8 +273,10 @@ when 'launchd'
 
   # If we reach this point, wrong argument was given
   abort 'Launchd needs an argument of "on" or "off"'
+when 'update'
+  update_definitions(force: true)
 when 'version'
-  puts '2022.1'
+  puts '2022.2'
 else
   abort <<~INVALID
     Invalid argument. Try:
