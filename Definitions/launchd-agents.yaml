@@ -1,0 +1,7 @@
+---
+name: launchd Agents
+id: ~
+
+paths:
+  - ~/Library/LaunchAgents
+...
