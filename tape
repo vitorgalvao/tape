@@ -11,6 +11,9 @@ require 'yaml'
 Script_path = Pathname.new($PROGRAM_NAME).expand_path
 Script_name = Script_path.basename
 
+# Check for minimum ruby version
+abort "#{Script_name} requires Ruby 2.7 or higher" if RUBY_VERSION.to_f < 2.7
+
 # Exit cleanup
 Tmp_dir = Pathname.new(Dir.mktmpdir)
 at_exit do Tmp_dir.rmtree end
