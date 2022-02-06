@@ -1,4 +1,4 @@
-# Tape
+# <img src='https://user-images.githubusercontent.com/1699443/152702986-198e7e40-b0a4-43d1-8fd8-47e52033e6e5.png' width='45' align='center' alt='icon'> Tape
 
 Tape is a command-line tool to backup and restore software settings on macOS. It can back up preferences for apps (including from the Mac App Store or Apples’s own), command-line tools, and even macOS customisations like your trackpad configuration or local spelling dictionary.
 
