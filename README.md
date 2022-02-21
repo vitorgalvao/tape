@@ -26,7 +26,7 @@ include:
 * `exclude`: Array. By default, Tape backs up settings for every software it knows how, except the ones on this list.
 * `include`: Array. If set, *only* these will be backed up and the `exclude` list will be ignored.
 
-To see what is included or excluded from backups, run `tape list`. To add to to `include` or `exclude`, use the app token: the [name of the file](https://github.com/vitorgalvao/tape/tree/main/Definitions) without extension.
+To see what is included or excluded from backups, run `tape list`. To add to `include` or `exclude`, use the app token: the [name of the file](https://github.com/vitorgalvao/tape/tree/main/Definitions) without extension.
 
 By default, Tape will backup its own configuration with the others.
 
@@ -50,7 +50,7 @@ Usage:
   tape help               Show this help
 ```
 
-If you intend to run Tape on-demand, run `tape backup` on occasion and you’re good to go. But if you want to set it and forget it, run `tape launched on` and it will automatically run backups for you everyday. Give them a look once in a blue moon to ensure everything is going smoothly.
+If you intend to run Tape on-demand, run `tape backup` on occasion and you’re good to go. If you want to set it and forget it, run `tape launched on` and it will automatically run backups for you everyday. Give them a look once in a blue moon to ensure everything is going smoothly.
 
 ## Supported software
 
