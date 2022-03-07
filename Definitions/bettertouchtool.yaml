@@ -3,5 +3,5 @@ name: BetterTouchTool
 id: com.hegenberg.BetterTouchTool
 
 paths:
-  - ~/Library/Application Support/BetterTouchTool/
+  - ~/Library/Application Support/BetterTouchTool
 ...
