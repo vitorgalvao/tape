@@ -1,7 +1,0 @@
----
-name: Alfred Workflow Data
-id: ~
-
-paths:
-  - ~/Library/Application Support/Alfred/Workflow Data
-...

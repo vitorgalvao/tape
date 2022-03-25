@@ -1,0 +1,7 @@
+---
+name: Alfred
+id: com.runningwithcrayons.Alfred
+
+paths:
+  - ~/Library/Application Support/Alfred
+...
