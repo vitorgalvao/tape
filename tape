@@ -160,7 +160,7 @@ Backups_dir = Pathname.new(Config['backup_to']).expand_path
 Definitions_dir = Config_dir.join('Definitions')
 
 # Launchd for automatic backups
-Launchd_file = Pathname.new(ENV['HOME']).join('Library', 'LaunchAgents', 'com.vitorgalvao.launchd.tape.plist')
+Launchd_file = Pathname.new(ENV['HOME']).join('Library', 'LaunchAgents', 'com.vitorgalvao.tape.plist')
 
 Launchd_contents = <<~LAUNCHD_PLIST
   <?xml version="1.0" encoding="UTF-8"?>
@@ -168,7 +168,7 @@ Launchd_contents = <<~LAUNCHD_PLIST
   <plist version="1.0">
   <dict>
           <key>Label</key>
-          <string>com.vitorgalvao.launchd.tape</string>
+          <string>com.vitorgalvao.tape</string>
           <key>EnvironmentVariables</key>
           <dict>
                   <key>PATH</key>
@@ -282,7 +282,7 @@ when 'launchd'
 when 'update'
   update_definitions(force: true)
 when 'version'
-  puts '2022.2'
+  puts '2022.3'
 else
   abort <<~INVALID
     Invalid argument. Try:
