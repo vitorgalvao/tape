@@ -119,13 +119,14 @@ def usage
     Backup and restore software settings on macOS
 
     Usage:
-      #{Script_name} backup             Update definitions and backup settings
-      #{Script_name} restore <tgz>      Restore settings from previous backup
-      #{Script_name} list               Show supported software separated by what will be backed up
-      #{Script_name} launchd <on|off>   Load or unload an agent to perform daily backups
-      #{Script_name} update             Force update of backup definitions
-      #{Script_name} version            Show #{Script_name} version
-      #{Script_name} help               Show this help
+      #{Script_name} backup                Update definitions and backup settings
+      #{Script_name} restore <tgz> [def]   Restore settings from previous backup
+                                 Giving a definition name restores only that software
+      #{Script_name} list                  Show supported software separated by what will be backed up
+      #{Script_name} launchd <on|off>      Load or unload an agent to perform daily backups
+      #{Script_name} update                Force update of backup definitions
+      #{Script_name} version               Show #{Script_name} version
+      #{Script_name} help                  Show this help
   USAGE
 
   exit
@@ -239,7 +240,9 @@ when 'restore'
   )
 
   # Restore apps available in backup
-  All_apps.each do |app_token|
+  Apps_to_restore = ARGV[2] ? [ARGV[2]] : All_apps
+
+  Apps_to_restore.each do |app_token|
     name = YAML.load_file(Definitions_dir.join("#{app_token}.yaml"))['name']
     next unless Tmp_dir.join(name).exist? # Skip if app directory does not exist in backup
 
@@ -282,7 +285,7 @@ when 'launchd'
 when 'update'
   update_definitions(force: true)
 when 'version'
-  puts '2022.3'
+  puts '2022.4'
 else
   abort <<~INVALID
     Invalid argument. Try:

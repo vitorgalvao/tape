@@ -41,16 +41,17 @@ $ tape help
 Backup and restore software settings on macOS
 
 Usage:
-  tape backup             Update definitions and backup settings
-  tape restore <tgz>      Restore settings from previous backup
-  tape list               Show supported software separated by what will be backed up
-  tape launchd <on|off>   Load or unload an agent to perform daily backups
-  tape update             Force update of backup definitions
-  tape version            Show tape version
-  tape help               Show this help
+  tape backup                Update definitions and backup settings
+  tape restore <tgz> [def]   Restore settings from previous backup
+                             Giving a definition name restores only that software
+  tape list                  Show supported software separated by what will be backed up
+  tape launchd <on|off>      Load or unload an agent to perform daily backups
+  tape update                Force update of backup definitions
+  tape version               Show tape version
+  tape help                  Show this help
 ```
 
-If you intend to run Tape on-demand, run `tape backup` on occasion and you’re good to go. If you want to set it and forget it, run `tape launched on` and it will automatically run backups for you everyday. Give them a look once in a blue moon to ensure everything is going smoothly.
+If you intend to run Tape on-demand, run `tape backup` on occasion and you’re good to go. If you want to set it and forget it, run `tape launchd on` and it will automatically run backups for you everyday. Give them a look once in a blue moon to ensure everything is going smoothly.
 
 ## Supported software
 
