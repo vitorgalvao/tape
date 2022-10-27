@@ -213,6 +213,7 @@ when 'backup'
     .each do backup_app(_1) end
 
   # Archive
+  puts 'Archiving…'
   Backups_dir.mkpath
 
   system(
