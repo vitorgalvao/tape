@@ -168,29 +168,29 @@ Launchd_contents = <<~LAUNCHD_PLIST
   <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
   <plist version="1.0">
   <dict>
-          <key>Label</key>
-          <string>com.vitorgalvao.tape</string>
-          <key>EnvironmentVariables</key>
-          <dict>
-                  <key>PATH</key>
-                  <string>/opt/homebrew/opt/ruby/bin:/usr/local/opt/ruby/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
-              </dict>
-          <key>ProgramArguments</key>
-          <array>
-                  <string>#{Script_path}</string>
-                  <string>backup</string>
-          </array>
-          <key>StandardOutPath</key>
-          <string>/tmp/tape_backup.log</string>
-          <key>StandardErrorPath</key>
-          <string>/tmp/tape_backup.log</string>
-          <key>StartCalendarInterval</key>
-          <dict>
-                  <key>Hour</key>
-                  <integer>20</integer>
-                  <key>Minute</key>
-                  <integer>0</integer>
-          </dict>
+      <key>Label</key>
+      <string>com.vitorgalvao.tape</string>
+      <key>EnvironmentVariables</key>
+      <dict>
+          <key>PATH</key>
+          <string>/opt/homebrew/opt/ruby/bin:/usr/local/opt/ruby/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+      </dict>
+      <key>ProgramArguments</key>
+      <array>
+          <string>#{Script_path}</string>
+          <string>backup</string>
+      </array>
+      <key>StandardOutPath</key>
+      <string>/tmp/tape_backup.log</string>
+      <key>StandardErrorPath</key>
+      <string>/tmp/tape_backup.log</string>
+      <key>StartCalendarInterval</key>
+      <dict>
+          <key>Hour</key>
+          <integer>20</integer>
+          <key>Minute</key>
+          <integer>0</integer>
+      </dict>
   </dict>
   </plist>
 LAUNCHD_PLIST
