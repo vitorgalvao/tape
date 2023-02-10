@@ -4,4 +4,5 @@ id: ~
 
 paths:
   - ~/.config/nvim
+  - ~/.local/share/nvim
 ...
