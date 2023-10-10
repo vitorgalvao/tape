@@ -244,9 +244,13 @@ when 'restore'
   Apps_to_restore = ARGV[2] ? [ARGV[2]] : All_apps
 
   Apps_to_restore.each do |app_token|
-    name = YAML.load_file(Definitions_dir.join("#{app_token}.yaml"))['name']
-    next unless Tmp_dir.join(name).exist? # Skip if app directory does not exist in backup
+    begin
+      name = YAML.load_file(Definitions_dir.join("#{app_token}.yaml"))['name']
+    rescue Errno::ENOENT
+      abort "No defintion for #{app_token}"
+    end
 
+    next unless Tmp_dir.join(name).exist? # Skip if app directory does not exist in backup
     restore_app(app_token)
   end
 when 'list'
