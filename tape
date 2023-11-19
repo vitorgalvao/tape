@@ -22,7 +22,7 @@ at_exit do Tmp_dir.rmtree end
 def app_running?(bundle_id)
   Open3.capture3(
     '/usr/bin/osascript', '-l', 'JavaScript', '-e',
-    "Application('#{bundle_id}').running()"
+    "function run(argv) { return Application(argv[0]).running() }", bundle_id
   ).first.strip == 'true'
 end
 
