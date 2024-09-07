@@ -122,7 +122,8 @@ def usage
       #{Script_name} backup                Update definitions and backup settings
       #{Script_name} restore <tgz> [def]   Restore settings from previous backup
                                  Giving a definition name restores only that software
-      #{Script_name} list                  Show supported software separated by what will be backed up
+      #{Script_name} list                  Show names of supported software separated by what will be backed up
+      #{Script_name} list tokens           Show tokens of supported software separated by what will be backed up
       #{Script_name} launchd <on|off>      Load or unload an agent to perform daily backups
       #{Script_name} update                Force update of backup definitions
       #{Script_name} version               Show #{Script_name} version
@@ -256,6 +257,12 @@ when 'restore'
 when 'list'
   included = (Config['include'].nil? ? All_apps - Config['exclude'].to_a : Config['include']).select { app_installed?(_1) }
   excluded = All_apps - included
+
+  if ARGV[1] == 'tokens'
+    puts excluded.map { "\e[31m✗\e[0m #{_1}" }.join("\n")
+    puts included.map { "\e[32m✗\e[0m #{_1}" }.join("\n")
+    exit
+  end
 
   puts excluded.map { YAML.load_file(Definitions_dir.join("#{_1}.yaml"))['name'] }.map { "\e[31m✗\e[0m #{_1}" }.join("\n")
   puts included.map { YAML.load_file(Definitions_dir.join("#{_1}.yaml"))['name'] }.map { "\e[32m✓\e[0m #{_1}" }.join("\n")
