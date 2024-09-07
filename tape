@@ -10,19 +10,6 @@ require 'tmpdir'
 Script_path = Pathname.new($PROGRAM_NAME).expand_path
 Script_name = Script_path.basename
 
-# If YAML config exists, convert to JSON
-require 'yaml'
-
-if Pathname.new("#{ENV['HOME']}/.config/tape/config.yaml").exist?
-  Old_conf = YAML.load_file(Pathname.new("#{ENV['HOME']}/.config/tape/config.yaml"))
-  Old_conf['exclude'] = Old_conf['exclude'] || []
-  Old_conf['include'] = Old_conf['include'] || []
-
-  Pathname.new("#{ENV['HOME']}/.config/tape/config.json").write(JSON.pretty_generate(Old_conf))
-  Pathname.new("#{ENV['HOME']}/.config/tape/config.yaml").delete
-  Pathname.new("#{ENV['HOME']}/.config/tape/Definitions").rmtree
-end
-
 # Check for minimum ruby version
 abort "#{Script_name} requires Ruby 2.7 or higher" if RUBY_VERSION.to_f < 2.7
 
