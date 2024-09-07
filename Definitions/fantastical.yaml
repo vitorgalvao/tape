@@ -1,6 +1,7 @@
 ---
 name: Fantastical
-id: com.flexibits.fantastical
+ids:
+  - com.flexibits.fantastical
 
 paths: ~
 ...

@@ -1,6 +1,6 @@
 ---
 name: Rubocop
-id: ~
+ids: ~
 
 paths:
   - ~/.rubocop.yml

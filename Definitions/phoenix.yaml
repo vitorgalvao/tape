@@ -1,6 +1,7 @@
 ---
 name: Phoenix
-id: org.khirviko.Phoenix
+ids:
+  - org.khirviko.Phoenix
 
 paths:
   - ~/.phoenix.js

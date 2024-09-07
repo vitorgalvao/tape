@@ -1,6 +1,6 @@
 ---
 name: Maid
-id: ~
+ids: ~
 
 paths:
   - ~/.maid

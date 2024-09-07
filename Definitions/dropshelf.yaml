@@ -1,6 +1,7 @@
 ---
 name: Dropshelf
-id: com.pilotmoon.Dropshelf
+ids:
+  - com.pilotmoon.Dropshelf
 
 paths: ~
 ...

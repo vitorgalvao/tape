@@ -1,6 +1,7 @@
 ---
 name: Due
-id: com.phocusllp.duemac
+ids:
+  - com.phocusllp.duemac
 
 paths: ~
 ...

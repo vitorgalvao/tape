@@ -1,6 +1,6 @@
 ---
 name: Rclone
-id: ~
+ids: ~
 
 paths:
   - ~/.config/rclone

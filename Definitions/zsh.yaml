@@ -1,6 +1,6 @@
 ---
 name: Zsh
-id: ~
+ids: ~
 
 paths:
   - ~/.zlogin

@@ -1,6 +1,6 @@
 ---
 name: Tape
-id: ~
+ids: ~
 
 paths:
   - ~/.config/tape/config.yaml

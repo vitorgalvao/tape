@@ -1,6 +1,7 @@
 ---
 name: Cockatrice
-id: com.cockatrice.cockatrice
+ids:
+  - com.cockatrice.cockatrice
 
 paths:
   - ~/Library/Application Support/Cockatrice/Cockatrice/cards.xml

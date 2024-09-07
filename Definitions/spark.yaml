@@ -1,6 +1,7 @@
 ---
 name: Spark
-id: com.readdle.smartemail-Mac
+ids:
+  - com.readdle.smartemail-Mac
 
 paths: ~
 ...

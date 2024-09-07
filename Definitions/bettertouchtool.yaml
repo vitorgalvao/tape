@@ -1,6 +1,7 @@
 ---
 name: BetterTouchTool
-id: com.hegenberg.BetterTouchTool
+ids:
+  - com.hegenberg.BetterTouchTool
 
 paths:
   - ~/Library/Application Support/BetterTouchTool

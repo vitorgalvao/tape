@@ -1,6 +1,7 @@
 ---
 name: Processing
-id: org.processing.app
+ids:
+  - org.processing.app
 
 paths:
   - ~/Library/Processing/preferences.txt

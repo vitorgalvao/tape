@@ -1,6 +1,6 @@
 ---
 name: Livestreamer
-id: ~
+ids: ~
 
 paths:
   - ~/.livestreamerrc

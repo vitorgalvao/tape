@@ -1,6 +1,7 @@
 ---
 name: Awareness
-id: com.futureproof.awareness
+ids:
+  - com.futureproof.awareness
 
 paths: ~
 ...

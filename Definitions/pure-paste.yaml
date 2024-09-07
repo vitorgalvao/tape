@@ -1,6 +1,7 @@
 ---
 name: Pure Paste
-id: com.sindresorhus.Pure-Paste
+ids:
+  - com.sindresorhus.Pure-Paste
 
 paths: ~
 ...

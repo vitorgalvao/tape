@@ -1,6 +1,7 @@
 ---
 name: Enjoyable
-id: com.yukkurigames.Enjoyable
+ids:
+  - com.yukkurigames.Enjoyable
 
 paths: ~
 ...

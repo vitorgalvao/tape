@@ -1,6 +1,6 @@
 ---
 name: ESLint
-id: ~
+ids: ~
 
 paths:
   - ~/.eslintrc

@@ -1,6 +1,7 @@
 ---
 name: Reeder
-id: com.reederapp.5.macOS
+ids:
+  - com.reederapp.5.macOS
 
 paths:
   - ~/Library/Containers/com.reederapp.5.macOS/Data/Library/Application Support/users.json

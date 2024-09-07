@@ -1,6 +1,7 @@
 ---
 name: Finder
-id: com.apple.finder
+ids:
+  - com.apple.finder
 
 paths: ~
 ...

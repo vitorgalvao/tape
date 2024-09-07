@@ -1,6 +1,6 @@
 ---
 name: macOS Fonts
-id: ~
+ids: ~
 
 paths:
   - ~/Library/Fonts

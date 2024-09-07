@@ -1,6 +1,6 @@
 ---
 name: Ruby
-id: ~
+ids: ~
 
 paths:
   - .gem/credentials

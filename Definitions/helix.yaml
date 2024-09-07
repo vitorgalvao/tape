@@ -1,6 +1,6 @@
 ---
 name: Helix
-id: ~
+ids: ~
 
 paths:
   - ~/.config/helix

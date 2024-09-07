@@ -1,6 +1,7 @@
 ---
 name: iA Writer
-id: pro.writer.mac
+ids:
+  - pro.writer.mac
 
 paths:
   - ~/Library/Containers/pro.writer.mac/Data/Library/Application Support/iA Writer/Templates

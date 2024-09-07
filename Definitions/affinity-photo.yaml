@@ -1,6 +1,7 @@
 ---
 name: Affinity Photo
-id: com.seriflabs.affinityphoto2
+ids:
+  - com.seriflabs.affinityphoto2
 
 paths: ~
 ...

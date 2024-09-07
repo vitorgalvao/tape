@@ -1,6 +1,6 @@
 ---
 name: fish
-id: ~
+ids: ~
 
 paths:
   - ~/.config/fish

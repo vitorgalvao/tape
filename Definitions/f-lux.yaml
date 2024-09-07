@@ -1,6 +1,7 @@
 ---
 name: f.lux
-id: org.herf.Flux
+ids:
+  - org.herf.Flux
 
 paths: ~
 ...

@@ -1,6 +1,7 @@
 ---
 name: Dash
-id: com.kapeli.dashdoc
+ids:
+  - com.kapeli.dashdoc
 
 paths: ~
 ...

@@ -1,6 +1,6 @@
 ---
 name: Neovim
-id: ~
+ids: ~
 
 paths:
   - ~/.config/nvim

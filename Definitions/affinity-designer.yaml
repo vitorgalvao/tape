@@ -1,6 +1,7 @@
 ---
 name: Affinity Designer
-id: com.seriflabs.affinitydesigner2
+ids:
+  - com.seriflabs.affinitydesigner2
 
 paths: ~
 ...

@@ -1,6 +1,6 @@
 ---
 name: macOS Sounds
-id: ~
+ids: ~
 
 paths:
   - ~/Library/Sounds

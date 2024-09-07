@@ -1,6 +1,7 @@
 ---
 name: Keystroke Pro
-id: de.ixeau.KeystrokePro2
+ids:
+  - de.ixeau.KeystrokePro2
 
 paths: ~
 ...

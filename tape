@@ -28,7 +28,7 @@ end
 
 def app_installed?(app_token)
   definition = YAML.load_file(Definitions_dir.join("#{app_token}.yaml"))
-  bundle_ids = definition['id'].instance_of?(String) ? [definition['id']] : definition['id']
+  bundle_ids = definition['ids']
 
   return true if bundle_ids&.any? { Open3.capture3('/usr/bin/defaults', 'read', _1).last.success? }
   return true if definition['paths']&.any? { Pathname.new(_1).expand_path.exist? }
@@ -47,7 +47,7 @@ end
 def backup_app(app_token)
   definition = YAML.load_file(Definitions_dir.join("#{app_token}.yaml"))
   backup_dir = Tmp_dir.join(definition['name'])
-  bundle_ids = definition['id'].instance_of?(String) ? [definition['id']] : definition['id']
+  bundle_ids = definition['ids']
 
   puts "Backing up #{definition['name']}…"
 
@@ -67,7 +67,7 @@ end
 def restore_app(app_token)
   definition = YAML.load_file(Definitions_dir.join("#{app_token}.yaml"))
   backup_dir = Tmp_dir.join(definition['name'])
-  bundle_ids = definition['id'].instance_of?(String) ? [definition['id']] : definition['id']
+  bundle_ids = definition['ids']
 
   puts "Restoring backup for #{definition['name']}…"
 

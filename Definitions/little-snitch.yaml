@@ -1,6 +1,6 @@
 ---
 name: Little Snitch
-id:
+ids:
   - at.obdev.LittleSnitchAgent
   - at.obdev.LittleSnitchConfiguration
   - at.obdev.LittleSnitchNetworkMonitor

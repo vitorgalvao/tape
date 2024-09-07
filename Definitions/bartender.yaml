@@ -1,6 +1,7 @@
 ---
 name: Bartender
-id: com.surteesstudios.Bartender
+ids:
+  - com.surteesstudios.Bartender
 
 paths: ~
 ...

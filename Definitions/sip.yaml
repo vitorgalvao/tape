@@ -1,6 +1,7 @@
 ---
 name: Sip
-id: com.ruiaureliano.Sip
+ids:
+  - com.ruiaureliano.Sip
 
 paths: ~
 ...

@@ -1,6 +1,7 @@
 ---
 name: MacUpdater
-id: com.corecode.MacUpdater
+ids:
+  - com.corecode.MacUpdater
 
 paths: ~
 ...

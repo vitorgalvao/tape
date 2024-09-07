@@ -1,6 +1,7 @@
 ---
 name: iTerm2
-id: com.googlecode.iterm2
+ids:
+  - com.googlecode.iterm2
 
 paths: ~
 ...

@@ -1,6 +1,6 @@
 ---
 name: SSH
-id: ~
+ids: ~
 
 paths:
   - ~/.ssh

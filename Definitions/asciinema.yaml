@@ -1,6 +1,6 @@
 ---
 name: asciinema
-id: ~
+ids: ~
 
 paths:
   - ~/.asciinema

@@ -1,6 +1,6 @@
 ---
 name: Git
-id: ~
+ids: ~
 
 paths:
   - ~/.gitconfig

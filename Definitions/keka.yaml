@@ -1,6 +1,7 @@
 ---
 name: Keka
-id: com.aone.keka
+ids:
+  - com.aone.keka
 
 paths: ~
 ...

@@ -1,6 +1,7 @@
 ---
 name: Mail
-id: com.apple.mail
+ids:
+  - com.apple.mail
 
 paths: ~
 ...

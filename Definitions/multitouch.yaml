@@ -1,6 +1,7 @@
 ---
 name: Multitouch
-id: com.brassmonkery.Multitouch
+ids:
+  - com.brassmonkery.Multitouch
 
 paths: ~
 ...

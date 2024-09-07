@@ -1,6 +1,7 @@
 ---
 name: OpenEmu
-id: org.openemu.OpenEmu
+ids:
+  - org.openemu.OpenEmu
 
 paths:
   - ~/Library/Application Support/OpenEmu

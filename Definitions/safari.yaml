@@ -1,6 +1,7 @@
 ---
 name: Safari
-id: com.apple.Safari
+ids:
+  - com.apple.Safari
 
 paths: ~
 ...

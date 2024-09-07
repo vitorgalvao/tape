@@ -1,6 +1,7 @@
 ---
 name: Dolphin
-id: org.dolphin-emu.dolphin
+ids:
+  - org.dolphin-emu.dolphin
 
 paths:
   - ~/Library/Application Support/Dolphin/Config

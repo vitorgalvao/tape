@@ -1,6 +1,7 @@
 ---
 name: Google Chrome
-id: com.google.Chrome
+ids:
+  - com.google.Chrome
 
 paths:
   - ~/Library/Application Support/Google/Chrome/Default/Extensions

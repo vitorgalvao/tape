@@ -1,6 +1,6 @@
 ---
 name: Massren
-id: ~
+ids: ~
 
 paths:
   - ~/.config/massren/profile.sqlite
