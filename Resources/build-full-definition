@@ -1,0 +1,31 @@
+#!/usr/bin/env ruby
+
+require 'json'
+require 'optparse'
+require 'pathname'
+require 'yaml'
+
+# Options
+ARGV.push('--help') if ARGV.count < 2
+
+OptionParser.new do |parser|
+  parser.banner = <<~BANNER
+    Join all YAML defintions into a single JSON.
+
+    Usage:
+      #{File.basename($PROGRAM_NAME)} <defintions_dir> <output_file>
+  BANNER
+end.parse!
+
+# Main
+Definitions_dir = Pathname.new(ARGV[0])
+Full_definitions_file = Pathname.new(ARGV[1])
+All_definition_files = Definitions_dir.children.select { |p| p.extname == '.yaml' }.sort
+
+Joined_definitions = All_definition_files.reduce({}) { |accumulator, current|
+  key = current.basename(current.extname).to_path
+  accumulator[key.to_sym] = YAML.load_file(current)
+  accumulator
+}
+
+Full_definitions_file.write(JSON.pretty_generate(Joined_definitions))
