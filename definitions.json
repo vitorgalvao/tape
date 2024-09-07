@@ -1,0 +1,535 @@
+{
+  "1password": {
+    "name": "1Password",
+    "ids": [
+      "com.agilebits.onepassword7",
+      "com.1password.1password"
+    ],
+    "paths": null
+  },
+  "affinity-designer": {
+    "name": "Affinity Designer",
+    "ids": [
+      "com.seriflabs.affinitydesigner2"
+    ],
+    "paths": null
+  },
+  "affinity-photo": {
+    "name": "Affinity Photo",
+    "ids": [
+      "com.seriflabs.affinityphoto2"
+    ],
+    "paths": null
+  },
+  "alfred": {
+    "name": "Alfred",
+    "ids": [
+      "com.runningwithcrayons.Alfred"
+    ],
+    "paths": [
+      "~/Library/Application Support/Alfred"
+    ]
+  },
+  "asciinema": {
+    "name": "asciinema",
+    "ids": null,
+    "paths": [
+      "~/.asciinema"
+    ]
+  },
+  "awareness": {
+    "name": "Awareness",
+    "ids": [
+      "com.futureproof.awareness"
+    ],
+    "paths": null
+  },
+  "bartender": {
+    "name": "Bartender",
+    "ids": [
+      "com.surteesstudios.Bartender"
+    ],
+    "paths": null
+  },
+  "bettertouchtool": {
+    "name": "BetterTouchTool",
+    "ids": [
+      "com.hegenberg.BetterTouchTool"
+    ],
+    "paths": [
+      "~/Library/Application Support/BetterTouchTool"
+    ]
+  },
+  "cockatrice": {
+    "name": "Cockatrice",
+    "ids": [
+      "com.cockatrice.cockatrice"
+    ],
+    "paths": [
+      "~/Library/Application Support/Cockatrice/Cockatrice/cards.xml",
+      "~/Library/Application Support/Cockatrice/Cockatrice/customsets",
+      "~/Library/Application Support/Cockatrice/Cockatrice/decks",
+      "~/Library/Application Support/Cockatrice/Cockatrice/pics/CUSTOM",
+      "~/Library/Application Support/Cockatrice/Cockatrice/replays",
+      "~/Library/Application Support/Cockatrice/Cockatrice/settings",
+      "~/Library/Application Support/Cockatrice/Cockatrice/themes",
+      "~/Library/Application Support/Cockatrice/Cockatrice/tokens.xml"
+    ]
+  },
+  "dash": {
+    "name": "Dash",
+    "ids": [
+      "com.kapeli.dashdoc"
+    ],
+    "paths": null
+  },
+  "dolphin": {
+    "name": "Dolphin",
+    "ids": [
+      "org.dolphin-emu.dolphin"
+    ],
+    "paths": [
+      "~/Library/Application Support/Dolphin/Config",
+      "~/Library/Application Support/Dolphin/GC/EUR",
+      "~/Library/Application Support/Dolphin/GC/JAP",
+      "~/Library/Application Support/Dolphin/GC/USA",
+      "~/Library/Application Support/Dolphin/Wii/title"
+    ]
+  },
+  "dropshelf": {
+    "name": "Dropshelf",
+    "ids": [
+      "com.pilotmoon.Dropshelf"
+    ],
+    "paths": null
+  },
+  "due": {
+    "name": "Due",
+    "ids": [
+      "com.phocusllp.duemac"
+    ],
+    "paths": null
+  },
+  "enjoyable": {
+    "name": "Enjoyable",
+    "ids": [
+      "com.yukkurigames.Enjoyable"
+    ],
+    "paths": null
+  },
+  "epic-games-launcher": {
+    "name": "Epic Games Launcher",
+    "ids": [
+      "com.epicgames.EpicGamesLauncher"
+    ],
+    "paths": [
+      "~/Library/Preferences/Unreal Engine/EpicGamesLauncher/Mac/GameUserSettings.ini"
+    ]
+  },
+  "eslint": {
+    "name": "ESLint",
+    "ids": null,
+    "paths": [
+      "~/.eslintrc"
+    ]
+  },
+  "f-lux": {
+    "name": "f.lux",
+    "ids": [
+      "org.herf.Flux"
+    ],
+    "paths": null
+  },
+  "fantastical": {
+    "name": "Fantastical",
+    "ids": [
+      "com.flexibits.fantastical"
+    ],
+    "paths": null
+  },
+  "finder": {
+    "name": "Finder",
+    "ids": [
+      "com.apple.finder"
+    ],
+    "paths": null
+  },
+  "fish": {
+    "name": "fish",
+    "ids": null,
+    "paths": [
+      "~/.config/fish"
+    ]
+  },
+  "gallery-dl": {
+    "name": "gallery-dl",
+    "ids": null,
+    "paths": [
+      "~/.config/gallery-dl"
+    ]
+  },
+  "geotoad": {
+    "name": "GeoToad",
+    "ids": null,
+    "paths": [
+      "~/.config/GeoToad"
+    ]
+  },
+  "git": {
+    "name": "Git",
+    "ids": null,
+    "paths": [
+      "~/.gitconfig",
+      "~/.gitignore",
+      "~/.config/git"
+    ]
+  },
+  "google-chrome": {
+    "name": "Google Chrome",
+    "ids": [
+      "com.google.Chrome"
+    ],
+    "paths": [
+      "~/Library/Application Support/Google/Chrome/Default/Extensions",
+      "~/Library/Application Support/Google/Chrome/Default/Local Extension Settings",
+      "~/Library/Application Support/Google/Chrome/Default/Preferences",
+      "~/Library/Application Support/Google/Chrome/Default/Secure Preferences"
+    ]
+  },
+  "helix": {
+    "name": "Helix",
+    "ids": null,
+    "paths": [
+      "~/.config/helix"
+    ]
+  },
+  "ia-writer": {
+    "name": "iA Writer",
+    "ids": [
+      "pro.writer.mac"
+    ],
+    "paths": [
+      "~/Library/Containers/pro.writer.mac/Data/Library/Application Support/iA Writer/Templates"
+    ]
+  },
+  "iterm2": {
+    "name": "iTerm2",
+    "ids": [
+      "com.googlecode.iterm2"
+    ],
+    "paths": null
+  },
+  "keka": {
+    "name": "Keka",
+    "ids": [
+      "com.aone.keka"
+    ],
+    "paths": null
+  },
+  "keystroke-pro": {
+    "name": "Keystroke Pro",
+    "ids": [
+      "de.ixeau.KeystrokePro2"
+    ],
+    "paths": null
+  },
+  "klokki-slim": {
+    "name": "Klokki Slim",
+    "ids": [
+      "com.klokki-slim.macos"
+    ],
+    "paths": [
+      "~/Library/Containers/com.klokki-slim.macos/Data/Library/Application Support/com.klokki-slim.macos"
+    ]
+  },
+  "launchd-agents": {
+    "name": "launchd Agents",
+    "ids": null,
+    "paths": [
+      "~/Library/LaunchAgents"
+    ]
+  },
+  "little-snitch": {
+    "name": "Little Snitch",
+    "ids": [
+      "at.obdev.LittleSnitchAgent",
+      "at.obdev.LittleSnitchConfiguration",
+      "at.obdev.LittleSnitchNetworkMonitor",
+      "at.obdev.LittleSnitchSoftwareUpdate"
+    ],
+    "paths": [
+      "~/Library/Application Support/Little Snitch"
+    ]
+  },
+  "livestreamer": {
+    "name": "Livestreamer",
+    "ids": null,
+    "paths": [
+      "~/.livestreamerrc",
+      "~/.config/livestreamer"
+    ]
+  },
+  "lunar": {
+    "name": "Lunar",
+    "ids": [
+      "fyi.lunar.Lunar"
+    ],
+    "paths": null
+  },
+  "macos-fonts": {
+    "name": "macOS Fonts",
+    "ids": null,
+    "paths": [
+      "~/Library/Fonts"
+    ]
+  },
+  "macos-sounds": {
+    "name": "macOS Sounds",
+    "ids": null,
+    "paths": [
+      "~/Library/Sounds"
+    ]
+  },
+  "macos-spelling": {
+    "name": "macOS Spelling",
+    "ids": null,
+    "paths": [
+      "~/Library/Spelling/LocalDictionary"
+    ]
+  },
+  "macupdater": {
+    "name": "MacUpdater",
+    "ids": [
+      "com.corecode.MacUpdater"
+    ],
+    "paths": null
+  },
+  "maid": {
+    "name": "Maid",
+    "ids": null,
+    "paths": [
+      "~/.maid"
+    ]
+  },
+  "mail": {
+    "name": "Mail",
+    "ids": [
+      "com.apple.mail"
+    ],
+    "paths": null
+  },
+  "massren": {
+    "name": "Massren",
+    "ids": null,
+    "paths": [
+      "~/.config/massren/profile.sqlite"
+    ]
+  },
+  "messages": {
+    "name": "Messages",
+    "ids": [
+      "com.apple.iChat"
+    ],
+    "paths": [
+      "~/Library/Application Scripts/com.apple.iChat"
+    ]
+  },
+  "mpv": {
+    "name": "mpv",
+    "ids": null,
+    "paths": [
+      "~/.config/mpv"
+    ]
+  },
+  "multitouch": {
+    "name": "Multitouch",
+    "ids": [
+      "com.brassmonkery.Multitouch"
+    ],
+    "paths": null
+  },
+  "neovim": {
+    "name": "Neovim",
+    "ids": null,
+    "paths": [
+      "~/.config/nvim",
+      "~/.local/share/nvim"
+    ]
+  },
+  "openemu": {
+    "name": "OpenEmu",
+    "ids": [
+      "org.openemu.OpenEmu"
+    ],
+    "paths": [
+      "~/Library/Application Support/OpenEmu"
+    ]
+  },
+  "peek": {
+    "name": "Peek",
+    "ids": [
+      "com.bigzlabs.peek"
+    ],
+    "Paths": [
+      "~/Library/Containers/pro.writer.mac/Data/Library/Application Support/iA Writer/Templates"
+    ]
+  },
+  "phoenix": {
+    "name": "Phoenix",
+    "ids": [
+      "org.khirviko.Phoenix"
+    ],
+    "paths": [
+      "~/.phoenix.js"
+    ]
+  },
+  "processing": {
+    "name": "Processing",
+    "ids": [
+      "org.processing.app"
+    ],
+    "paths": [
+      "~/Library/Processing/preferences.txt"
+    ]
+  },
+  "pure-paste": {
+    "name": "Pure Paste",
+    "ids": [
+      "com.sindresorhus.Pure-Paste"
+    ],
+    "paths": null
+  },
+  "rclone": {
+    "name": "Rclone",
+    "ids": null,
+    "paths": [
+      "~/.config/rclone"
+    ]
+  },
+  "reeder": {
+    "name": "Reeder",
+    "ids": [
+      "com.reederapp.5.macOS"
+    ],
+    "paths": [
+      "~/Library/Containers/com.reederapp.5.macOS/Data/Library/Application Support/users.json"
+    ]
+  },
+  "rubocop": {
+    "name": "Rubocop",
+    "ids": null,
+    "paths": [
+      "~/.rubocop.yml",
+      "~/.config/rubocop/config.yml"
+    ]
+  },
+  "ruby": {
+    "name": "Ruby",
+    "ids": null,
+    "paths": [
+      ".gem/credentials",
+      ".gemrc",
+      ".irbrc",
+      ".pryrc"
+    ]
+  },
+  "safari": {
+    "name": "Safari",
+    "ids": [
+      "com.apple.Safari"
+    ],
+    "paths": null
+  },
+  "script-editor": {
+    "name": "Script Editor",
+    "ids": [
+      "com.apple.ScriptEditor2"
+    ],
+    "paths": null
+  },
+  "sip": {
+    "name": "Sip",
+    "ids": [
+      "com.ruiaureliano.Sip"
+    ],
+    "paths": null
+  },
+  "spark": {
+    "name": "Spark",
+    "ids": [
+      "com.readdle.smartemail-Mac"
+    ],
+    "paths": null
+  },
+  "ssh": {
+    "name": "SSH",
+    "ids": null,
+    "paths": [
+      "~/.ssh"
+    ]
+  },
+  "tape": {
+    "name": "Tape",
+    "ids": null,
+    "paths": [
+      "~/.config/tape/config.yaml"
+    ]
+  },
+  "textual": {
+    "name": "Textual",
+    "ids": [
+      "com.codeux.irc.textual5"
+    ],
+    "paths": [
+      "~/Library/Application Support/Textual IRC"
+    ]
+  },
+  "transmission": {
+    "name": "Transmission",
+    "ids": [
+      "org.m0k.transmission"
+    ],
+    "paths": [
+      "~/Library/Application Support/Transmission/blocklists"
+    ]
+  },
+  "visual-studio-code": {
+    "name": "Visual Studio Code",
+    "ids": [
+      "com.microsoft.VSCode"
+    ],
+    "paths": [
+      "~/Library/Application Support/Code/User"
+    ]
+  },
+  "vmware-fusion": {
+    "name": "VMWare Fusion",
+    "ids": [
+      "com.vmware.fusion"
+    ],
+    "paths": [
+      "~/Library/Application Support/VMware Fusion"
+    ]
+  },
+  "yacreader": {
+    "name": "YACReader",
+    "ids": [
+      "com.yourcompany.YACReader"
+    ],
+    "paths": [
+      "~/Library/Application Support/YACReader"
+    ]
+  },
+  "zsh": {
+    "name": "Zsh",
+    "ids": null,
+    "paths": [
+      "~/.zlogin",
+      "~/.zlogout",
+      "~/.zprofile",
+      "~/.zsh_history",
+      "~/.zshenv",
+      "~/.zshrc"
+    ]
+  }
+}
