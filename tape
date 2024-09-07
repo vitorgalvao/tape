@@ -6,7 +6,6 @@ require 'json'
 require 'open3'
 require 'pathname'
 require 'tmpdir'
-require 'yaml'
 
 Script_path = Pathname.new($PROGRAM_NAME).expand_path
 Script_name = Script_path.basename
@@ -26,8 +25,8 @@ def app_running?(bundle_id)
   ).first.strip == 'true'
 end
 
-def app_installed?(app_token)
-  definition = YAML.load_file(Definitions_dir.join("#{app_token}.yaml"))
+def app_installed?(app_token, definitions = All_apps)
+  definition = definitions[app_token]
   bundle_ids = definition['ids']
 
   return true if bundle_ids&.any? { Open3.capture3('/usr/bin/defaults', 'read', _1).last.success? }
@@ -44,8 +43,8 @@ def copy_path(source, target)
   FileUtils.cp_r(source, target)
 end
 
-def backup_app(app_token)
-  definition = YAML.load_file(Definitions_dir.join("#{app_token}.yaml"))
+def backup_app(app_token, definitions = All_apps)
+  definition = definitions[app_token]
   backup_dir = Tmp_dir.join(definition['name'])
   bundle_ids = definition['ids']
 
@@ -64,8 +63,8 @@ def backup_app(app_token)
   end
 end
 
-def restore_app(app_token)
-  definition = YAML.load_file(Definitions_dir.join("#{app_token}.yaml"))
+def restore_app(app_token, definitions = All_apps)
+  definition = definitions[app_token]
   backup_dir = Tmp_dir.join(definition['name'])
   bundle_ids = definition['ids']
 
@@ -106,11 +105,7 @@ def update_definitions(force: false)
   return if remote_hash == local_hash
 
   # Update
-  Definitions_dir.rmtree if Definitions_dir.exist?
-  tmp_repo = Pathname.new(Dir.mktmpdir)
-
-  system('git', 'clone', '--quiet', 'https://github.com/vitorgalvao/tape.git', tmp_repo.to_path)
-  tmp_repo.join('Definitions').rename(Definitions_dir)
+  system('/usr/bin/curl', '--silent', 'https://raw.githubusercontent.com/vitorgalvao/tape/main/definitions.json', '--output', Definitions_file.to_path)
 end
 
 # Usage
@@ -137,29 +132,30 @@ usage if ARGV.empty? || ARGV.include?('help') || ARGV.include?('--help') || ARGV
 
 # Load config
 Config_dir = Pathname.new(ENV['HOME']).join('.config', 'tape')
-Config_file = Config_dir.join('config.yaml')
+Config_file = Config_dir.join('config.json')
 
 Default_config = {
-  'backup_to' => Config_dir.join('Backups').to_path, # Directory to save backups (leading "~" is expanded)
-  'keep' => 5, # Number of backups to keep
-  'exclude' => ['ssh'], # By default, backup everything except what is on this list
-  'include' => nil # If set, *only* these will be backed up and the "exclude" list will be ignored
+  backup_to: Config_dir.join('Backups').to_path, # Directory to save backups (leading "~" is expanded)
+  keep: 5, # Number of backups to keep
+  exclude: ['ssh'], # By default, backup everything except what is on this list
+  include: [] # If set, *only* these will be backed up and the "exclude" list will be ignored
 }.freeze
 
 unless Config_file.exist?
-  warn "No config file found. One with default settings was saved to #{Config_file}:\n#{Default_config.to_yaml}\n"
+  Default_config_json = JSON.pretty_generate(Default_config)
+  warn "No config file found. One with default settings was saved to #{Config_file}:\n#{Default_config_json}\n"
 
   Config_dir.mkpath
-  Config_file.write(Default_config.to_yaml)
+  Config_file.write(Default_config_json)
 end
 
-Config = YAML.load_file(Config_file)
+Config = JSON.load_file(Config_file)
 
 abort '"keep" value in configuration needs to be a whole number bigger than 0' unless Config['keep'].positive?
 
 # Collect software to backup or restore
 Backups_dir = Pathname.new(Config['backup_to']).expand_path
-Definitions_dir = Config_dir.join('Definitions')
+Definitions_file = Config_dir.join('definitions.json')
 
 # Launchd for automatic backups
 Launchd_file = Pathname.new(ENV['HOME']).join('Library', 'LaunchAgents', 'com.vitorgalvao.tape.plist')
@@ -200,16 +196,12 @@ LAUNCHD_PLIST
 # Update definitions
 update_definitions
 
-All_apps = Definitions_dir
-  .children
-  .select { _1.extname == '.yaml' }
-  .sort
-  .map { _1.basename(_1.extname).to_path }
+All_apps = JSON.load_file(Definitions_file)
 
 case ARGV[0]
 when 'backup'
   # Backup selected and valid apps
-  (Config['include'].nil? ? All_apps - Config['exclude'].to_a : Config['include'])
+  (Config['include'].empty? ? All_apps.keys - Config['exclude'] : Config['include'])
     .select { app_installed?(_1) }
     .each do backup_app(_1) end
 
@@ -242,11 +234,11 @@ when 'restore'
   )
 
   # Restore apps available in backup
-  Apps_to_restore = ARGV[2] ? [ARGV[2]] : All_apps
+  Apps_to_restore = ARGV[2] ? [ARGV[2]] : All_apps.keys
 
   Apps_to_restore.each do |app_token|
     begin
-      name = YAML.load_file(Definitions_dir.join("#{app_token}.yaml"))['name']
+      name = All_apps[app_token]['name']
     rescue Errno::ENOENT
       abort "No defintion for #{app_token}"
     end
@@ -255,8 +247,8 @@ when 'restore'
     restore_app(app_token)
   end
 when 'list'
-  included = (Config['include'].nil? ? All_apps - Config['exclude'].to_a : Config['include']).select { app_installed?(_1) }
-  excluded = All_apps - included
+  included = (Config['include'].empty? ? All_apps.keys - Config['exclude'] : Config['include']).select { app_installed?(_1) }
+  excluded = All_apps.keys - included
 
   if ARGV[1] == 'tokens'
     puts excluded.map { "\e[31m✗\e[0m #{_1}" }.join("\n")
@@ -264,8 +256,8 @@ when 'list'
     exit
   end
 
-  puts excluded.map { YAML.load_file(Definitions_dir.join("#{_1}.yaml"))['name'] }.map { "\e[31m✗\e[0m #{_1}" }.join("\n")
-  puts included.map { YAML.load_file(Definitions_dir.join("#{_1}.yaml"))['name'] }.map { "\e[32m✓\e[0m #{_1}" }.join("\n")
+  puts excluded.map { All_apps[_1]['name'] }.map { "\e[31m✗\e[0m #{_1}" }.join("\n")
+  puts included.map { All_apps[_1]['name'] }.map { "\e[32m✓\e[0m #{_1}" }.join("\n")
 when 'launchd'
   if ARGV[1] == 'on'
     Launchd_file.dirname.mkpath

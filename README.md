@@ -12,13 +12,15 @@ brew install vitorgalvao/tiny-scripts/tape
 
 ## Configuration (optional)
 
-Tape stores its configuration in `~/.config/tape/config.yaml`. If it doesn’t exist, it will be created on first run with sensible defaults. Quick example:
+Tape stores its configuration in `~/.config/tape/config.json`. If it doesn’t exist, it will be created on first run with sensible defaults. Quick example:
 
 ```
-backup_to: "~/.config/tape/Backups"
-keep: 5
-exclude: ["affinity-designer", "ssh"]
-include:
+{
+  "backup_to": "~/.config/tape/Backups",
+  "keep": 5,
+  "exclude": ["affinity-designer", "ssh"],
+  "include": []
+}
 ```
 
 * `backup_to`: String. Directory to save backups to (leading `~` is expanded to your home directory).
@@ -26,7 +28,7 @@ include:
 * `exclude`: Array. By default, Tape backs up settings for every software it knows how, except the ones on this list.
 * `include`: Array. If set, *only* these will be backed up and the `exclude` list will be ignored.
 
-To see what is included or excluded from backups, run `tape list`. To add to `include` or `exclude`, use the app token: the [name of the file](https://github.com/vitorgalvao/tape/tree/main/Definitions) without extension.
+To see what is included or excluded from backups, run `tape list`. To add to `include` or `exclude`, use the app token: (`tape list tokens`).
 
 By default, Tape will backup its own configuration with the others.
 
@@ -44,7 +46,8 @@ Usage:
   tape backup                Update definitions and backup settings
   tape restore <tgz> [def]   Restore settings from previous backup
                              Giving a definition name restores only that software
-  tape list                  Show supported software separated by what will be backed up
+  tape list                  Show names of supported software separated by what will be backed up
+  tape list tokens           Show tokens of supported software separated by what will be backed up
   tape launchd <on|off>      Load or unload an agent to perform daily backups
   tape update                Force update of backup definitions
   tape version               Show tape version
@@ -55,7 +58,7 @@ If you intend to run Tape on-demand, run `tape backup` on occasion and you’re 
 
 ## Supported software
 
-Run `tape list` or check the [definitions](https://github.com/vitorgalvao/tape/tree/main/Definitions) to see what’s supported.
+Run `tape list` to see what’s supported.
 
 ## Contributing
 

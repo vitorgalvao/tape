@@ -1,0 +1,26 @@
+name: Build Definitions File
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v4
+    - name: Build definitions JSON
+      run: |
+        ./Resources/build-full-definition './Definitions' './definitions.json'
+    - name: Set up git user
+      run: |
+        git config user.name "github-actions"
+        git config user.email "actions@users.noreply.github.com"
+    - name: Commit if there are changes then push
+      run: |
+        git add './definitions.json'
+        git diff-index --quiet HEAD || git commit --message 'Updated definitions file'
+        git push
