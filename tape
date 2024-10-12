@@ -239,7 +239,7 @@ when 'restore'
   Apps_to_restore.each do |app_token|
     begin
       name = All_apps[app_token]['name']
-    rescue Errno::ENOENT
+    rescue
       abort "No defintion for #{app_token}"
     end
 
