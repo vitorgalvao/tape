@@ -264,8 +264,8 @@ when 'launchd'
     Launchd_file.write(Launchd_contents)
 
     system(
-      'launchctl', 'bootstrap',
-      "gui/#{Open3.capture2('/usr/bin/id', '-u', ENV['USER']).first}",
+      '/bin/launchctl', 'bootstrap',
+      "gui/#{Open3.capture2('/usr/bin/id', '-u', ENV['USER']).first.chomp}",
       Launchd_file.to_path
     )
 
@@ -274,8 +274,8 @@ when 'launchd'
 
   if ARGV[1] == 'off'
     system(
-      'launchctl', 'bootout',
-      "gui/#{Open3.capture2('/usr/bin/id', '-u', ENV['USER']).first}",
+      '/bin/launchctl', 'bootout',
+      "gui/#{Open3.capture2('/usr/bin/id', '-u', ENV['USER']).first.chomp}",
       Launchd_file.to_path
     )
 
