@@ -520,6 +520,13 @@
       "~/Library/Application Support/YACReader"
     ]
   },
+  "yt-dlp": {
+    "name": "yt-dlp",
+    "ids": null,
+    "paths": [
+      "~/.config/yt-dlp"
+    ]
+  },
   "zsh": {
     "name": "Zsh",
     "ids": null,
