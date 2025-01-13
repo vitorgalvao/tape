@@ -1,0 +1,7 @@
+---
+name: yt-dlp
+ids: ~
+
+paths:
+  - ~/.config/yt-dlp
+...
