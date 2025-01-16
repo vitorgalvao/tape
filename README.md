@@ -38,8 +38,7 @@ Tape backs up settings into compressed `.tgz` files. These are then used for res
 
 ## Usage
 
-```console
-$ tape help
+```
 Backup and restore software settings on macOS
 
 Usage:
