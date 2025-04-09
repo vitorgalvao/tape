@@ -4,37 +4,13 @@ Tape is a command-line tool to backup and restore software settings on macOS. It
 
 ## Installation
 
-Download the `tape` executable at the root of this repository and you’re good to go. Alternatively, install with [Homebrew](https://brew.sh):
+Install with [Homebrew](https://brew.sh):
 
 ```shell
 brew install vitorgalvao/tiny-scripts/tape
 ```
 
-## Configuration (optional)
-
-Tape stores its configuration in `~/.config/tape/config.json`. If it doesn’t exist, it will be created on first run with sensible defaults. Quick example:
-
-```
-{
-  "backup_to": "~/.config/tape/Backups",
-  "keep": 5,
-  "exclude": ["affinity-designer", "ssh"],
-  "include": []
-}
-```
-
-* `backup_to`: String. Directory to save backups to (leading `~` is expanded to your home directory).
-* `keep`: Integer. Number of backups to keep. Must be higher than zero.
-* `exclude`: Array. By default, Tape backs up settings for every software it knows how, except the ones on this list.
-* `include`: Array. If set, *only* these will be backed up and the `exclude` list will be ignored.
-
-To see what is included or excluded from backups, run `tape list`. To add to `include` or `exclude`, use the app token: (`tape list tokens`).
-
-By default, Tape will backup its own configuration with the others.
-
-## How it works
-
-Tape backs up settings into compressed `.tgz` files. These are then used for restores when needed. This approach is conducive to experimentation, because as long as you keep a specific good configuration you can roll back to it.
+Alternatively, download the executable at the root of this repository and call it directly.
 
 ## Usage
 
@@ -58,6 +34,32 @@ If you intend to run Tape on-demand, run `tape backup` on occasion and you’re 
 ## Supported software
 
 Run `tape list` to see what’s supported.
+
+## Configuration
+
+Tape stores its configuration in `~/.config/tape/config.json`. If it doesn’t exist, it will be created on first run with sensible defaults. Quick example:
+
+```json
+{
+  "backup_to": "~/.config/tape/Backups",
+  "keep": 5,
+  "exclude": ["affinity-designer", "ssh"],
+  "include": []
+}
+```
+
+* `backup_to`: String. Directory to save backups to (leading `~` is expanded to your home directory).
+* `keep`: Integer. Number of backups to keep. Must be higher than zero.
+* `exclude`: Array. By default, Tape backs up settings for every software it knows how, except the ones on this list.
+* `include`: Array. If set, *only* these will be backed up and the `exclude` list will be ignored.
+
+To see what is included or excluded from backups, run `tape list`. To add to `include` or `exclude`, use the app token: (`tape list tokens`).
+
+By default, Tape will backup its own configuration with the others.
+
+## How it works
+
+Tape backs up settings into compressed `.tgz` files. These are then used for restores when needed. This approach is conducive to experimentation, because as long as you keep a specific good configuration you can roll back to it.
 
 ## Contributing
 
