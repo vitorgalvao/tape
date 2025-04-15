@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  fetch:
+  build:
     runs-on: ubuntu-latest
     permissions:
       contents: write
