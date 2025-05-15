@@ -24,7 +24,8 @@
   "alfred": {
     "name": "Alfred",
     "ids": [
-      "com.runningwithcrayons.Alfred"
+      "com.runningwithcrayons.Alfred",
+      "com.runningwithcrayons.Alfred-Preferences"
     ],
     "paths": [
       "~/Library/Application Support/Alfred"
