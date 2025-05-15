@@ -48,10 +48,12 @@ Tape stores its configuration in `~/.config/tape/config.json`. If it doesn’t e
 }
 ```
 
-* `backup_to`: String. Directory to save backups to (leading `~` is expanded to your home directory).
-* `keep`: Integer. Number of backups to keep. Must be higher than zero.
-* `exclude`: Array. By default, Tape backs up settings for every software it knows how, except the ones on this list.
-* `include`: Array. If set, *only* these will be backed up and the `exclude` list will be ignored.
+| Key         | Type         | Description                                                                                       |
+| ----------- | ------------ | ------------------------------------------------------------------------------------------------- |
+| `backup_to` | String       | Directory to save backups to (leading `~` is expanded to your home directory).                    |
+| `keep`      | Integer      | Number of backups to keep. Must be higher than zero.                                              |
+| `exclude`   | String Array | By default, Tape backs up settings for every software it knows how, except the ones on this list. |
+| `include`   | String Array | If set, *only* these will be backed up and the `exclude` list will be ignored.                    |
 
 To see what is included or excluded from backups, run `tape list`. To add to `include` or `exclude`, use the app token: (`tape list tokens`).
 
