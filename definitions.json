@@ -52,6 +52,18 @@
     ],
     "paths": null
   },
+  "bash": {
+    "name": "Bash",
+    "ids": null,
+    "paths": [
+      "~/.bash_aliases",
+      "~/.bash_history",
+      "~/.bash_login",
+      "~/.bash_logout",
+      "~/.bash_profile",
+      "~/.bashrc"
+    ]
+  },
   "bettertouchtool": {
     "name": "BetterTouchTool",
     "ids": [
