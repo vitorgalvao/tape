@@ -1,0 +1,12 @@
+---
+name: Bash
+ids: ~
+
+paths:
+  - ~/.bash_aliases
+  - ~/.bash_history
+  - ~/.bash_login
+  - ~/.bash_logout
+  - ~/.bash_profile
+  - ~/.bashrc
+...
