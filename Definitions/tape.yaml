@@ -3,5 +3,5 @@ name: Tape
 ids: ~
 
 paths:
-  - ~/.config/tape/config.yaml
+  - ~/.config/tape/config.json
 ...
