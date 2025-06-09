@@ -485,7 +485,7 @@
     "name": "Tape",
     "ids": null,
     "paths": [
-      "~/.config/tape/config.yaml"
+      "~/.config/tape/config.json"
     ]
   },
   "textual": {
