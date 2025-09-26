@@ -3,5 +3,6 @@ name: Helix
 ids: ~
 
 paths:
-  - ~/.config/helix
+  - ~/.config/helix/config.toml
+  - ~/.config/helix/languages.toml
 ...
