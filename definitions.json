@@ -213,7 +213,8 @@
     "name": "Helix",
     "ids": null,
     "paths": [
-      "~/.config/helix"
+      "~/.config/helix/config.toml",
+      "~/.config/helix/languages.toml"
     ]
   },
   "ia-writer": {
