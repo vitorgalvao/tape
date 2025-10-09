@@ -160,6 +160,13 @@
     ],
     "paths": null
   },
+  "feedback-assistant": {
+    "name": "Feedback Assistant",
+    "ids": [
+      "com.apple.appleseed.FeedbackAssistant"
+    ],
+    "paths": null
+  },
   "finder": {
     "name": "Finder",
     "ids": [
