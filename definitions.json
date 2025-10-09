@@ -195,6 +195,15 @@
       "~/.config/GeoToad"
     ]
   },
+  "ghostty": {
+    "name": "Ghostty",
+    "ids": [
+      "com.mitchellh.ghostty"
+    ],
+    "paths": [
+      "~/Library/Application Support/com.mitchellh.ghostty"
+    ]
+  },
   "git": {
     "name": "Git",
     "ids": null,
