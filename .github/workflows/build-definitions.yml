@@ -16,9 +16,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPOSITORY: ${{ github.repository }}
         run: |
-           git config --global user.name "github-actions"
-           git config --global user.email "github-actions@users.noreply.github.com"
-           git clone "https://x-access-token:${GITHUB_TOKEN}@github.com/${REPOSITORY}" .
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@users.noreply.github.com"
+          git clone "https://x-access-token:${GITHUB_TOKEN}@github.com/${REPOSITORY}" .
       - name: Build definitions JSON
         run: |
           ./Resources/build-full-definition './Definitions' './definitions.json'
