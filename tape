@@ -292,7 +292,7 @@ when 'launchd'
 when 'update'
   update_definitions(force: true)
 when 'version'
-  puts '2022.4'
+  puts '2026.1'
 else
   abort <<~INVALID
     Invalid argument. Try:
